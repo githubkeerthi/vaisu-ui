@@ -1,0 +1,36 @@
+<div class="card m-3">
+    <h5 class="card-header">Create Stock Group</h5>
+    <div class="card-body" >
+        <form name="form" (ngSubmit)="f.form.valid && doAction()" #f="ngForm"  appDuplicateValueCheck [name]="name" [id]="stockGroup.id" [stockGroups]="stockGroups"  novalidate>
+                <div class="form-group">
+                    <label>Stock Group Name</label>
+                    <input type="text" name="name" class="form-control" [(ngModel)]="stockGroup.name" #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required>
+                    <div *ngIf="f.submitted && name.invalid" class="invalid-feedback">
+                        <div *ngIf="name.errors.required">Stock Group Name is required.</div>
+                        <div *ngIf="name.errors.match">Stock Group Name already exists!!</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Alias</label>
+                    <input type="text" name="alias" class="form-control" [(ngModel)]="stockGroup.alias" #alias="ngModel">
+                </div>
+
+            <div class="form-group">
+            <label>Parent Stock Group</label>
+            <select name="parentStockGroup" class="form-control" [(ngModel)]="stockGroup.parentStockGroup"
+                #parentStockGroup="ngModel" [ngClass]="{ 'is-invalid': f.submitted && parentStockGroup.invalid }" required>
+                <option value="0" selected>Primary</option>
+                <option *ngFor="let stockGroup of stockGroups" [value]="stockGroup.id">{{stockGroup.name}}</option>
+            </select>
+            <div *ngIf="f.submitted && parentStockGroup.invalid" class="invalid-feedback">
+                <div *ngIf="parentStockGroup.errors.required">Parent Stock Group is required.</div>
+            </div>
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-primary mr-1">Submit</button>
+                <button class="btn btn-secondary" type="reset" (click) = "closeDialog()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
