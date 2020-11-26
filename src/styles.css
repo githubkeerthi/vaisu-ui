@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";ng
+
+.body-content{
+ padding-bottom:60px;
+}
+
+table.mat-table {
+  width: 80%;
+  /* margin-left: 150px; */
+  position: inherit;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-paginator {
+    display: block;
+    float: right;
+    margin-right: 130px;
+}
+
+section.material-section {
+  display: table;
+  float: right;
+}
+
+.material-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.material-button-row {
+  display: table-cell;
+  width: 490px;
+}
+
+.material-button-row .material-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+a {
+  cursor: pointer;
+}
