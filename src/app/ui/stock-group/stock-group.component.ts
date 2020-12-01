@@ -1,7 +1,7 @@
 import { Component, OnInit, Optional, Inject } from '@angular/core';
 import { StockGroup } from 'src/app/domain/stockgroup';
 import { StockGroupService } from 'src/app/services/stock-group.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-stock-group',
@@ -17,16 +17,12 @@ export class StockGroupComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<StockGroupComponent>,
     // @Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: StockGroup, private stockGroupService: StockGroupService) {
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any, private stockGroupService: StockGroupService) {
     console.log(data);
-    this.stockGroup = {...data};
-    if (this.stockGroup.id) {
-      this.action = 'Update';
-    } else {
-      this.action = 'Add';
-    }
+    this.stockGroup = data.stockGroup;
+    this.action = data.action;
     console.log('data is :: ' + this.stockGroup.name);
-    console.log('Action type :: ' + this.action);
+    console.log('action type is :: ' + this.action);
   }
 
   ngOnInit() {

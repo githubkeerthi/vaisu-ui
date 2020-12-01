@@ -21,9 +21,9 @@ import { FooterComponent } from './ui/footer/footer.component';
 import { EventEmitterService } from './services/event-emitter.service';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { MustMatchDirective } from './directives/must-match.directive';
-import { DuplicateValueCheck } from './directives/duplicate-value-check.directive';
+import { ValidateStockGroupName } from './directives/unique-stock-group-namedirective';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { DeleteDialogComponent } from './common/delete-dialog/delete-dialog.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -40,7 +40,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         HeaderComponent,
         FooterComponent,
         MustMatchDirective,
-        DuplicateValueCheck
+        ValidateStockGroupName,
+        DeleteDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -50,10 +51,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         AppRoutingModule,
         AngularMaterialModule,
         ReactiveFormsModule,
-        FlexLayoutModule
+        FlexLayoutModule,
 
     ],
     providers: [EventEmitterService],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+ }

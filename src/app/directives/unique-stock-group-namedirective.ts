@@ -6,15 +6,13 @@ import { StockGroup } from '../domain/stockgroup';
 import { StockGroupService } from '../services/stock-group.service';
 
 @Directive({
-    selector: '[appDuplicateValueCheck]',
-    providers: [{ provide: NG_VALIDATORS, useExisting: DuplicateValueCheck, multi: true }]
+    selector: '[uniqueStockGroupName]',
+    providers: [{ provide: NG_ASYNC_VALIDATORS, useExisting: ValidateStockGroupName, multi: true }]
 })
-export class DuplicateValueCheck implements Validator {
-    constructor() {}
+export class ValidateStockGroupName implements Validator {
+    constructor(private stockGroupService: StockGroupService) {}
     @Input() name: string;
-    @Input() id: number;
-    @Input() stockGroups: StockGroup[];
-    validate(formGroup: FormGroup): ValidationErrors {
-        return duplicateValueCheck(this.name, this.id, this.stockGroups)(formGroup);
+    validate(formGroup: FormGroup): Promise<ValidationErrors |null> | Observable<ValidationErrors | null> {
+        return duplicateValueCheck(this.name, this.stockGroupService)(formGroup);
     }
 }

@@ -1,19 +1,26 @@
-<small  *ngIf ='invalidLogin'>{{errorMessage}}</small>
-<div class="simple-login-container">
-    <h2>Login Form</h2>
-    <div class="row">
-        <div class="col-md-12 form-group">
-            <input type="text" class="form-control pi-user" placeholder="Username" [(ngModel)] ="username">
+<small *ngIf ="invalidLogin">{{errorMessage}}</small>
+<div class="login-main-wrapp">
+<div class="login-container">
+    <h2>Login</h2>
+    <form>
+        <div class="form-group">
+            <figure>
+                <i class="fa fa-user"></i>
+            </figure>
+            <input type="text" class="form-control" placeholder="Username"  [(ngModel)] ="username">
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 form-group">
-            <input type="password" placeholder="Enter your Password" class="form-control" [(ngModel)] ="password">
+        <div class="form-group">
+            <figure>
+                <i class="fa fa-key"></i>
+            </figure>
+            <input type="password" placeholder="Enter your Password" class="form-control"  [(ngModel)] ="password">
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 form-group">
-            <input type="submit" class="btn btn-block btn-login" placeholder="Enter your Password" (click) = authenticateUser()>
+        <div class="form-group">
+            <input type="submit" class="btn btn-block btn-login" (click) = "authenticateUser()">
         </div>
-    </div>
+        <div class="login-sign-up">
+            Do you have an account? <a routerLink = "/register">Sign Up</a>
+        </div>
+    </form> 
+</div>
 </div>

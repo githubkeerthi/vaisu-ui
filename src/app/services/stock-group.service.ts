@@ -45,9 +45,9 @@ export class StockGroupService {
     return this.http.post<StockGroup>(`${API_URl}/stockgroup/save`, stockgroup, {headers});
   }
 
-  isStockGroupNameExists(name: string, id: number) {
+  isStockGroupNameExists(name: string) {
     console.log('Checking stock group !! name:: ' + name);
     const headers = this.getHeader();
-    return this.http.get<StockGroup>(`${API_URl}/stockgroup/isStockExists/${name}/${id}` , {headers});
+    return this.http.get<StockGroup>(`${API_URl}/stockgroup/isStockExists/${name}` , {headers});
   }
 }

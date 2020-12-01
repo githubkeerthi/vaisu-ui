@@ -1,18 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";ng
 
+.app-color {
+ color: #292047;
+}
+
+.edit-icon {
+  color: #292047;
+}
+
 .body-content{
  padding-bottom:60px;
-}
-
-table.mat-table {
-  width: 80%;
-  /* margin-left: 150px; */
-  position: inherit;
-}
-
-th.mat-sort-header-sorted {
-  color: black;
 }
 
 .mat-paginator {
@@ -45,3 +43,65 @@ section.material-section {
 a {
   cursor: pointer;
 }
+
+.container-table {
+    background: #292047;
+    min-height: calc(100vh - 56px);
+    padding: 20px;
+  }
+  table {
+    width: 80%;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    background: #fff;
+  }
+  th,
+  td {
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #170d38;
+  }
+  th {
+    text-align: left;
+  }
+  thead th {
+    background-color: #9fa6c7;
+  }
+  tbody tr:hover {
+    background-color: rgb(225 221 239);
+  }
+  tbody td {
+    position: relative;
+  }
+  tbody td:hover:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -9999px;
+    bottom: -9999px;
+    background-color: rgba(255, 255, 255, 0.2);
+    z-index: -1;
+  }
+
+  .action-btns{
+      width: 80%;
+      margin: 0 auto 20px;
+      text-align: right;
+  }
+  .action-btns .btn{
+      background: #fff;
+      border-radius: 4px;
+      margin-left:5px; 
+    border-radius: 20px;
+    width: auto;
+    padding: 6px 25px;
+    text-transform: uppercase;
+    font-weight: 500; 
+  }
+  .action-btns .btn:hover{
+    background: #000;
+    color: #fff;
+  }

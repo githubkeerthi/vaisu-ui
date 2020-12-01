@@ -7,6 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { StockGroupComponent } from './stock-group.component';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-stock-groups',
@@ -18,6 +19,7 @@ export class StockGroupsComponent implements OnInit, AfterViewInit {
   stockGroup: StockGroup;
   displayedColumns: string[] = ['position', 'name', 'alias', 'parentgroup', 'action'];
   datasource = new MatTableDataSource<StockGroup>();
+  actionObj: any;
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -39,24 +41,24 @@ export class StockGroupsComponent implements OnInit, AfterViewInit {
     this.loadAllStockGroups();
   }
 
-openDialog(obj) {
+openDialog(obj: StockGroup, action: any) {
+  this.actionObj = {'stockGroup': obj, 'action' : action};
     const dialogRef = this.dialog.open(StockGroupComponent, {
       width: '650px',
-      data: obj,
-      disableClose: false
+      data: this.actionObj,
+      disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('Action type is after dialog closed :: ' + result.event);
       this.stockGroup = result.data as StockGroup;
       if (result.event === 'Add') {
-       this.stockGroupService.create(this.stockGroup);
+       this.stockGroupService.create(this.stockGroup).subscribe(res => {this.loadAllStockGroups(); });
       } else if (result.event === 'Update') {
-       this.stockGroupService.update(this.stockGroup);
+       this.stockGroupService.update(this.stockGroup).subscribe(res => {this.loadAllStockGroups(); });
       } else if (result.event === 'Delete') {
-       this.stockGroupService.delete(this.stockGroup.id);
+       this.stockGroupService.delete(this.stockGroup.id).subscribe(res => {this.loadAllStockGroups(); });
       }
-       this.loadAllStockGroups();
     });
   }
 
